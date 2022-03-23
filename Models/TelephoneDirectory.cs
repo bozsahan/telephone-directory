@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Directory.Models
 {
-    public class Directory
+    public class TelephoneDirectory
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UUID { get; set; }
