@@ -53,5 +53,16 @@ namespace Directory.Controllers
             directory.Company = request.Company;
             return Ok(directorys);
         }
+        [HttpDelete("{UUID}")]
+        public async Task<ActionResult<List<TelephoneDirectory>>> Delete(int UUID)
+        {
+
+            var directory = directorys.Find(x => x.UUID == UUID);
+            if (directory == null)
+                return BadRequest("People Not Found");
+            directorys.Remove(directory);
+            return Ok(directory);
+        }
+
     }
 }
