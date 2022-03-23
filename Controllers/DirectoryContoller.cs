@@ -27,7 +27,7 @@ namespace Directory.Controllers
             
             return Ok(directorys);
         }
-        [HttpGet]
+        [HttpGet("{UUID}")]
         public async Task<ActionResult<TelephoneDirectory>> Get(int UUID)
         {
 
@@ -40,6 +40,17 @@ namespace Directory.Controllers
         public async Task<ActionResult<List<TelephoneDirectory>>> Post(TelephoneDirectory directory)
         {
             directorys.Add(directory);
+            return Ok(directorys);
+        }
+        [HttpPut]
+        public async Task<ActionResult<List<TelephoneDirectory>>> Put(TelephoneDirectory request)
+        {
+            var directory = directorys.Find(x => x.UUID ==request.UUID);
+            if (directory == null)
+                return BadRequest("People Not Found");
+            directory.Name = request.Name;
+            directory.Surname = request.Surname;
+            directory.Company = request.Company;
             return Ok(directorys);
         }
     }
