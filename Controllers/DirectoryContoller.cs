@@ -14,6 +14,7 @@ namespace Directory.Controllers
             {
                 new TelephoneDirectory
                 {
+                    UUID = 1,
                     Name ="şahan",
                     Surname ="boz",
                     Company="Okul"
@@ -21,9 +22,24 @@ namespace Directory.Controllers
 
             };
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<ActionResult<List<TelephoneDirectory>>> Get()
         {
             
+            return Ok(directorys);
+        }
+        [HttpGet]
+        public async Task<ActionResult<TelephoneDirectory>> Get(int UUID)
+        {
+
+            var directory = directorys.Find(x => x.UUID == UUID);
+            if (directory == null)
+                return BadRequest("People Not Found");
+            return Ok(directory);
+        }
+        [HttpPost]
+        public async Task<ActionResult<List<TelephoneDirectory>>> Post(TelephoneDirectory directory)
+        {
+            directorys.Add(directory);
             return Ok(directorys);
         }
     }
