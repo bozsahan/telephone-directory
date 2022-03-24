@@ -14,13 +14,22 @@ namespace Directory.Controllers
             {
                 new TelephoneDirectory
                 {
-                    UUID = 1,
+                   
+                    Name ="şahan",
+                    Surname ="boz",
+                    Company="Okul"
+                },
+                new TelephoneDirectory
+                {
+
                     Name ="şahan",
                     Surname ="boz",
                     Company="Okul"
                 }
 
+
             };
+
         [HttpGet]
         public async Task<ActionResult<List<TelephoneDirectory>>> Get()
         {
